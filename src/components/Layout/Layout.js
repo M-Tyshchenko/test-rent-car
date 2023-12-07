@@ -1,6 +1,7 @@
 import { Suspense } from 'react';
 import { Outlet } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
+import { GlobalStyles } from 'components/GlobalStyle';
 import { AppBar } from 'components/AppBar/AppBar';
 
 const Layout = () => {
@@ -27,7 +28,9 @@ const Layout = () => {
         <div>
           <Outlet />
         </div>
-      </Suspense>
+          </Suspense>
+          
+          <GlobalStyles />
     </div>
   );
 };
