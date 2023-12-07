@@ -10,23 +10,23 @@ export const AppBar = () => {
         <NavLink to="/favorites">Favourite</NavLink>
       </div>
 
-      <div>
+      {/* <div> */}
         {/* Logged in user menu */}
-        <div>
-          <p>Welcome, user</p>
-          <button type="submit">Logout</button>
-        </div>
+        {/* <div> */}
+          {/* <p>Welcome, user</p> */}
+          {/* <button type="submit">Logout</button> */}
+        {/* </div> */}
         {/* OR */}
         {/* Register menu */}
-        <ul>
+        {/* <ul>
           <li>
             <NavLink to="/register">Sign up</NavLink>
           </li>
           <li>
             <NavLink to="/login">Login</NavLink>
           </li>
-        </ul>
-      </div>
+        </ul> */}
+      {/* </div> */}
     </header>
   );
 };
