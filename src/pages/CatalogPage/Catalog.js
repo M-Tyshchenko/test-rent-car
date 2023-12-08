@@ -24,7 +24,7 @@ export const Catalog = () => {
           height="80"
           width="80"
           radius="9"
-          color="pink"
+          color="#3470FF"
           ariaLabel="three-dots-loading"
           wrapperStyle={{
             display: 'flex',
