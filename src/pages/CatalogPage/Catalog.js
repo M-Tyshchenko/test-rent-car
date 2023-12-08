@@ -1,6 +1,42 @@
+import { CarGallery } from 'components/CarGallery/CarGallery';
+import { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { fetchCars } from 'redux/operations';
+import { selectError, selectIsLoading } from 'redux/selectors';
+import { SearchBar } from 'components/SearchBar/SearchBar';
+import { ThreeDots } from 'react-loader-spinner';
+
 export const Catalog = () => {
+  const dispatch = useDispatch();
+  const isLoading = useSelector(selectIsLoading);
+  const error = useSelector(selectError);
+
+  useEffect(() => {
+    dispatch(fetchCars());
+  }, [dispatch]);
+
   return (
-    <h1>Catalog of cars for rent</h1>
+    <>
+      {/* <h1>Catalog of cars for rent</h1> */}
+      <SearchBar />
+      {isLoading && !error && (
+        <ThreeDots
+          height="80"
+          width="80"
+          radius="9"
+          color="pink"
+          ariaLabel="three-dots-loading"
+          wrapperStyle={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          wrapperClassName=""
+          visible={true}
+        />
+      )}
+      <CarGallery />
+    </>
   );
 };
 
