@@ -37,7 +37,7 @@ const handleDeleteFavoriteCarFulfilled = (state, action) => {
   state.isLoading = false;
   state.error = null;
   const index = state.favorites.findIndex(car => car.id === action.payload.id);
-  state.items.splice(index, 1);
+  state.favorites.splice(index, 1);
 };
 
 const carsSlice = createSlice({
@@ -47,22 +47,16 @@ const carsSlice = createSlice({
     builder
       .addCase(fetchCars.pending, handlePending)
       .addCase(fetchCars.fulfilled, handleFetchCarsFulfilled)
-      .addCase(
-        fetchCars.rejected,
-        handleRejected)
-          .addCase(fetchFavoriteCars.pending, handlePending)
-          .addCase(
-            fetchFavoriteCars.fulfilled,
-            handleFetchFavoriteCarsFulfilled
-          )
-          .addCase(fetchFavoriteCars.rejected, handleRejected)
-          .addCase(addFavorite.pending, handlePending)
-          .addCase(addFavorite.fulfilled, handleAddFavoriteCarFulfilled)
-          .addCase(addFavorite.rejected, handleRejected)
-          .addCase(deleteFavorite.pending, handlePending)
-          .addCase(deleteFavorite.fulfilled, handleDeleteFavoriteCarFulfilled)
-          .addCase(deleteFavorite.rejected, handleRejected)
-      ,
+      .addCase(fetchCars.rejected, handleRejected)
+      .addCase(fetchFavoriteCars.pending, handlePending)
+      .addCase(fetchFavoriteCars.fulfilled, handleFetchFavoriteCarsFulfilled)
+      .addCase(fetchFavoriteCars.rejected, handleRejected)
+      .addCase(addFavorite.pending, handlePending)
+      .addCase(addFavorite.fulfilled, handleAddFavoriteCarFulfilled)
+      .addCase(addFavorite.rejected, handleRejected)
+      .addCase(deleteFavorite.pending, handlePending)
+      .addCase(deleteFavorite.fulfilled, handleDeleteFavoriteCarFulfilled)
+      .addCase(deleteFavorite.rejected, handleRejected),
 });
 
 export const { fetchingInProgress, fetchingSuccess, fetchingError } =
