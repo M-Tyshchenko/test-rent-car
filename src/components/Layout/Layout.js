@@ -3,11 +3,13 @@ import { Outlet } from 'react-router-dom';
 import { ThreeDots } from 'react-loader-spinner';
 import { GlobalStyles } from 'components/GlobalStyle';
 import { AppBar } from 'components/AppBar/AppBar';
+import { LayoutContainer, PageContainer } from './Layout.styled';
 
 const Layout = () => {
   return (
-    <div>
+    <LayoutContainer>
       <AppBar />
+
       <Suspense
         fallback={
           <ThreeDots
@@ -25,13 +27,13 @@ const Layout = () => {
           />
         }
       >
-        <div>
+        <PageContainer>
           <Outlet />
-        </div>
-          </Suspense>
-          
-          <GlobalStyles />
-    </div>
+        </PageContainer>
+      </Suspense>
+
+      <GlobalStyles />
+    </LayoutContainer>
   );
 };
 
