@@ -1,20 +1,21 @@
-import { NavLink } from 'react-router-dom';
+import { Header, LinkContainer, StyledLink } from './AppBar.styled';
 
 export const AppBar = () => {
   return (
-    <header>
-      <div>
-        <NavLink to="/">Home</NavLink>
-        <NavLink to="/catalog">Catalog</NavLink>
-        {/* if logged in show favorites page */}
-        <NavLink to="/favorites">Favourite</NavLink>
-      </div>
+    <>
+      <Header>
+        <LinkContainer>
+          <StyledLink to="/">Home</StyledLink>
+          <StyledLink to="/catalog">Catalog</StyledLink>
+          {/* if logged in show favorites page */}
+          <StyledLink to="/favorites">Favourite</StyledLink>
+        </LinkContainer>
 
-      {/* <div> */}
+        {/* <div> */}
         {/* Logged in user menu */}
         {/* <div> */}
-          {/* <p>Welcome, user</p> */}
-          {/* <button type="submit">Logout</button> */}
+        {/* <p>Welcome, user</p> */}
+        {/* <button type="submit">Logout</button> */}
         {/* </div> */}
         {/* OR */}
         {/* Register menu */}
@@ -26,7 +27,9 @@ export const AppBar = () => {
             <NavLink to="/login">Login</NavLink>
           </li>
         </ul> */}
-      {/* </div> */}
-    </header>
+        {/* </div> */}
+      </Header>
+      <hr />
+    </>
   );
 };
