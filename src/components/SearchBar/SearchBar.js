@@ -1,5 +1,8 @@
-import { useState } from 'react';
+// import { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import Select from 'react-select';
+import { changeFilterByBrand, changeFilterByPrice } from 'redux/filterSlice';
+import { selectFilterByBrand, selectFilterByPrice } from 'redux/selectors';
 import {
   Form,
   FormLabel,
@@ -37,7 +40,11 @@ for (let i = 10; i <= 500; i += 10) {
 }
 
 export const SearchBar = () => {
-  const [selectedOption, setSelectedOption] = useState('');
+  // const [selectedOption, setSelectedOption] = useState('');
+  const dispatch = useDispatch();
+  const filterByBrand = useSelector(selectFilterByBrand);
+  const filterByPrice = useSelector(selectFilterByPrice);
+
   return (
     <>
       <Form>
@@ -45,8 +52,11 @@ export const SearchBar = () => {
           Car brand
           <Select
             placeholder="Enter the text"
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            defaultValue={filterByBrand}
+            onChange={event => {
+              console.log(event);
+              dispatch(changeFilterByBrand(event.value));
+            }}
             options={brandOptions}
           />
         </FormLabel>
@@ -56,8 +66,11 @@ export const SearchBar = () => {
           <Select
             placeholder="To $"
             autosuggest="false"
-            defaultValue={selectedOption}
-            onChange={setSelectedOption}
+            defaultValue={filterByPrice}
+            onChange={event => {
+              console.log(event.value);
+              dispatch(changeFilterByPrice(event.value));
+            }}
             options={priceOption}
             styles={{ color: 'red' }}
           />
