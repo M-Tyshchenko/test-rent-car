@@ -1,12 +1,10 @@
 import { CarGalleryItem } from 'components/CarGalleryItem/CarGalleryItem';
 import { useSelector } from 'react-redux';
-import { selectVisibleCarsByBrand } from 'redux/selectors';
+import { selectVisibleCars } from 'redux/selectors';
 import { CarGalleryContainer, CarList, LoadMoreBtn } from './CarGallery.styled';
 
 export const CarGallery = () => {
-  const carsByBrand = useSelector(selectVisibleCarsByBrand);
-
-  let cars = carsByBrand;
+  const cars = useSelector(selectVisibleCars);
 
   // const dispatch = useDispatch();
 
