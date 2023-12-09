@@ -1,24 +1,48 @@
 import styled from 'styled-components';
-// import Select from 'react-select';
 
 export const Form = styled.form`
   display: flex;
   justify-content: center;
   align-items: flex-end;
   gap: 18px;
-
-  /* padding-top: 25px; */
   padding-bottom: 25px;
-
   color: #121417;
 `;
 
 export const FormLabel = styled.label`
+  /* margin-bottom: 8px; */
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
   color: #8a8a89;
 `;
+
+export const SelectBrand = styled.select`
+  width: 224px;
+  height: 48px;
+
+  font-size: 18px;
+  line-height: 20px;
+  padding: 14px 18px;
+  background-color: #f7f7fb;
+  color: #8a8a89;
+  border-color: transparent;
+  border-radius: 14px;
+`;
+
+export const SelectPrice = styled.select`
+  width: 125px;
+  height: 48px;
+
+  font-size: 18px;
+  line-height: 20px;
+  padding: 14px 18px;
+  background-color: #f7f7fb;
+  color: #8a8a89;
+  border-color: transparent;
+  border-radius: 14px;
+`;
+
 export const InputBox = styled.div`
   display: flex;
 `;
