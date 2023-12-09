@@ -1,13 +1,14 @@
 import styled from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 
 export const ListItem = styled.li`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 28px;
-  /* width: 274px; */
 `;
+
 export const ImageContainer = styled.div`
   position: relative;
 `;
@@ -27,17 +28,15 @@ export const Image = styled.img`
   } */
 `;
 
-export const FavoriteBtn = styled(FaRegHeart)`
+export const FavoriteBtn = styled(FaHeart)`
   position: absolute;
   top: 14px;
   right: 14px;
-  /* fill: red;
-  background-color: aqua; */
-  fill: rgba(255, 255, 255, 0.8);
-
-  &:checked {
-    background-color: #3470ff;
-  }
+  /* color: red; */
+  fill: #3470ff;
+  stroke: #3470ff;
+  /* background-color: aqua; */
+  /* fill: rgba(255, 255, 255, 0.8); */
 `;
 
 export const CardTitle = styled.div`
