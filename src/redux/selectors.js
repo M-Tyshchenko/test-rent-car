@@ -12,7 +12,9 @@ export const selectFilterByBrand = state => state.filter.filterBrand;
 
 export const selectFilterByPrice = state => state.filter.filterPrice;
 
-export const selectVisibleCarsByBrand = createSelector(
+export const selectModal = state => state.modal.isModalOpen;
+
+export const selectVisibleCars = createSelector(
   [selectCars, selectFilterByBrand, selectFilterByPrice],
   (cars, filterBrand, filterPrice) => {
     let filteredCars = cars;
