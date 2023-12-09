@@ -17,7 +17,6 @@ export const Catalog = () => {
 
   return (
     <>
-      {/* <h1>Catalog of cars for rent</h1> */}
       <SearchBar />
       {isLoading && !error && (
         <ThreeDots
