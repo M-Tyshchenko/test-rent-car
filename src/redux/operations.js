@@ -13,7 +13,6 @@ export const fetchCars = createAsyncThunk(
 
       return response.data;
     } catch (error) {
-      // console.error(error);
       return thunkApi.rejectWithValue(error.message);
     }
   }
