@@ -1,6 +1,5 @@
-// import { useState } from 'react';
 import Modal from 'react-modal';
-// import { FaRegHeart } from 'react-icons/fa';
+
 import {
   ImageContainer,
   Image,
