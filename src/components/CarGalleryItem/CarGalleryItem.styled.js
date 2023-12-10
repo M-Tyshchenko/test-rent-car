@@ -1,6 +1,4 @@
 import styled from 'styled-components';
-import { FaRegHeart } from 'react-icons/fa';
-import { FaHeart } from 'react-icons/fa';
 
 export const ListItem = styled.li`
   display: flex;
@@ -29,14 +27,14 @@ export const Image = styled.img`
   } */
 `;
 
-export const FavoriteTrueBtn = styled(FaHeart)`
+export const FavoriteTrueBtn = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
   color: #3470ff;
 `;
 
-export const FavoriteFalseBtn = styled(FaRegHeart)`
+export const FavoriteFalseBtn = styled.button`
   position: absolute;
   top: 14px;
   right: 14px;
