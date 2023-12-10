@@ -11,7 +11,6 @@ import {
   FavoriteFalseBtn,
   FavoriteTrueBtn,
   ModalImage,
-  PopUp,
   ModalContainer,
   ModalCloseButton,
   DescrContainer,
@@ -23,8 +22,9 @@ import {
   RentalCarBtn,
 } from './CarGalleryItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { changeModalState } from 'redux/modalSlice';
-import { selectFavoriteCars, selectModal } from 'redux/selectors';
+import { selectFavoriteCars } from 'redux/selectors';
+import { addFavorite, deleteFavorite } from 'redux/operations';
+import { useState } from 'react';
 
 Modal.setAppElement('#root');
 
@@ -32,11 +32,16 @@ export const CarGalleryItem = ({ car }) => {
   const dispatch = useDispatch();
   const favorites = useSelector(selectFavoriteCars);
   const isFavorite = favorites.find(favorite => favorite.id === car.id);
-  const isModalOpen = useSelector(selectModal);
   const address = car.address.split(',');
   const rentalConditions = car.rentalConditions.split('\n');
   const minDriverAge = Number(rentalConditions[0].slice(-2));
   const mileage = car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+
+  const closeModal = () => setIsModalOpen(false);
 
   return (
     <>
@@ -44,10 +49,21 @@ export const CarGalleryItem = ({ car }) => {
         <div>
           <ImageContainer>
             <Image src={car.img} alt={car.make} loading="lazy" />
-            <button type="button">
-              {isFavorite && <FavoriteTrueBtn size={18} />}
-              <FavoriteFalseBtn size={18} />
-            </button>
+            {isFavorite && (
+              <button
+                type="button"
+                onClick={() => dispatch(deleteFavorite(car.id))}
+              >
+                <FavoriteTrueBtn size={18} />
+              </button>
+            )}
+
+            {!isFavorite && (
+              <button type="button" onClick={() => dispatch(addFavorite(car))}>
+                <FavoriteFalseBtn size={18} />
+                {isFavorite && <FavoriteTrueBtn size={18} />}
+              </button>
+            )}
           </ImageContainer>
 
           <CardTitle>
@@ -62,48 +78,41 @@ export const CarGalleryItem = ({ car }) => {
             {car.model} | {car.id} | {car.accessories[0]}
           </CardDescription>
         </div>
-        <LearnMoreBtn
-          type="button"
-          onClick={() => dispatch(changeModalState(true))}
-        >
+        <LearnMoreBtn type="button" onClick={openModal}>
           Learn more
         </LearnMoreBtn>
-      </ListItem>
-      {isModalOpen && (
-        <PopUp
-          isOpen={isModalOpen}
-          onRequestClose={() => dispatch(changeModalState(false))}
-          style={{
-            // overlay: {
-            //   position: 'fixed',
-            //   top: '0',
-            //   left: '0',
-            //   width: '100vw',
-            //   height: '100vh',
-            //   backgroundColor: 'rgba(0, 0, 0, 0)',
-            //   zIndex: '1200',
-            //   display: 'flex',
-            //   justifyContent: 'center',
-            //   alignItems: 'center',
-            // },
 
+        <Modal
+          isOpen={isModalOpen}
+          onRequestClose={closeModal}
+          style={{
+            overlay: {
+              position: 'fixed',
+              top: '0',
+              left: '0',
+              width: '100vw',
+              height: '100vh',
+              backgroundColor: 'rgba(18, 20, 23, 0.5)',
+              zIndex: '1200',
+              display: 'flex',
+              justifyContent: 'center',
+              alignItems: 'center',
+            },
             content: {
               top: '50%',
               left: '50%',
               right: 'auto',
               bottom: 'auto',
-              // marginRight: '-50%',
+              marginRight: '-50%',
               transform: 'translate(-50%, -50%)',
-              maxWidth: '541',
+              padding: '0',
+              border: 'none',
             },
           }}
         >
           <ModalContainer>
             <ModalImage src={car.img} alt={car.make} loading="lazy" />
-            <ModalCloseButton
-              type="button"
-              onClick={() => dispatch(changeModalState(false))}
-            >
+            <ModalCloseButton type="button" onClick={closeModal}>
               <RxCross1 size={12} />
             </ModalCloseButton>
 
@@ -168,8 +177,8 @@ export const CarGalleryItem = ({ car }) => {
               <RentalCarBtn href="tel:+380730000000">Rental car</RentalCarBtn>
             </CardContainer>
           </ModalContainer>
-        </PopUp>
-      )}
+        </Modal>
+      </ListItem>
     </>
   );
 };
