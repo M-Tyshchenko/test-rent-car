@@ -1,7 +1,6 @@
 import styled from 'styled-components';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
-import Modal from 'react-modal';
 
 export const ListItem = styled.li`
   display: flex;
@@ -34,8 +33,7 @@ export const FavoriteTrueBtn = styled(FaHeart)`
   position: absolute;
   top: 14px;
   right: 14px;
-   color: #3470ff;
-
+  color: #3470ff;
 `;
 
 export const FavoriteFalseBtn = styled(FaRegHeart)`
@@ -81,24 +79,9 @@ export const LearnMoreBtn = styled.button`
   }
 `;
 
-export const PopUp = styled(Modal)`
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 1200;
-  width: 100vw;
-  height: 100vh;
-  background-color: rgba(0, 0, 0, 0.2);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-`;
-
 export const ModalContainer = styled.div`
   position: relative;
   padding: 40px;
-  /* display: flex; */
   width: 541px;
   border-radius: 24px;
   background-color: #fff;
@@ -116,10 +99,8 @@ export const ModalImage = styled.img`
   width: 461px;
   border-radius: 14px;
   margin-bottom: 14px;
-
-  /* max-width: calc(100vw - 48px);
-  max-height: calc(100vh - 24px); */
 `;
+
 export const CardContainer = styled.div`
   display: flex;
   flex-direction: column;
