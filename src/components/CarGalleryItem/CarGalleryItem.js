@@ -1,4 +1,5 @@
 import Modal from 'react-modal';
+import { useState } from 'react';
 import { RxCross1 } from 'react-icons/rx';
 import { FaRegHeart } from 'react-icons/fa';
 import { FaHeart } from 'react-icons/fa';
@@ -24,19 +25,14 @@ import {
   RentalCarBtn,
 } from './CarGalleryItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectCars, selectFavoriteCars } from 'redux/selectors';
-import { addFavorite, deleteFavorite } from 'redux/operations';
-import { useState } from 'react';
+import { selectFavoriteCars } from 'redux/selectors';
+import { addFavorite, deleteFromFavorites } from 'redux/favoritesSlice';
 
 Modal.setAppElement('#root');
 
 export const CarGalleryItem = ({ car }) => {
   const dispatch = useDispatch();
-
-  const cars = useSelector(selectCars);
   const favorites = useSelector(selectFavoriteCars);
-  console.log('cars', cars);
-  console.log('favorites', favorites);
 
   const address = car.address.split(',');
   const rentalConditions = car.rentalConditions.split('\n');
@@ -64,7 +60,7 @@ export const CarGalleryItem = ({ car }) => {
             {isFavorite && (
               <FavoriteTrueBtn
                 type="button"
-                onClick={() => dispatch(deleteFavorite(car.id))}
+                onClick={() => dispatch(deleteFromFavorites(car.id))}
               >
                 <FaHeart size={18} />
               </FavoriteTrueBtn>

@@ -1,23 +1,24 @@
-import { useDispatch, useSelector } from 'react-redux';
-import { useEffect } from 'react';
-import { ThreeDots } from 'react-loader-spinner';
-import { fetchFavoriteCars } from 'redux/operations';
-import { selectError, selectIsLoading } from 'redux/selectors';
+// import { useDispatch, useSelector } from 'react-redux';
+// import { useEffect } from 'react';
+// import { ThreeDots } from 'react-loader-spinner';
+// import { fetchFavoriteCars } from 'redux/operations';
+// import { selectError, selectIsLoading } from 'redux/selectors';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { CarGallery } from 'components/CarGallery/CarGallery';
 
 export const Favorites = () => {
-  const dispatch = useDispatch();
-  const isLoading = useSelector(selectIsLoading);
-  const error = useSelector(selectError);
+  // const dispatch = useDispatch();
+  // const isLoading = useSelector(selectIsLoading);
+  // const error = useSelector(selectError);
 
-  useEffect(() => {
-    dispatch(fetchFavoriteCars());
-  }, [dispatch]);
+  // useEffect(() => {
+  //   dispatch(fetchFavoriteCars());
+  // }, [dispatch]);
+
   return (
     <>
       <SearchBar />
-      {isLoading && !error && (
+      {/* {isLoading && !error && (
         <ThreeDots
           height="80"
           width="80"
@@ -32,7 +33,7 @@ export const Favorites = () => {
           wrapperClassName=""
           visible={true}
         />
-      )}
+      )} */}
       <CarGallery />
     </>
   );

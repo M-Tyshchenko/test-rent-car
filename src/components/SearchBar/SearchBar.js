@@ -56,12 +56,7 @@ export const SearchBar = () => {
       >
         <FormLabel>
           Car brand
-          <SelectBrand
-            defaultValue={filterByBrand}
-            // onChange={event => {
-            //   dispatch(changeFilterBrand(event.target.value));
-            // }}
-          >
+          <SelectBrand defaultValue={filterByBrand}>
             <option value="">Enter the text</option>
             {brandOptions.map(option => (
               <option
@@ -75,12 +70,7 @@ export const SearchBar = () => {
 
         <FormLabel>
           Price/1hour
-          <SelectPrice
-            defaultValue={filterByPrice}
-            // onChange={event => {
-            //   dispatch(changeFilterPrice(event.target.value));
-            // }}
-          >
+          <SelectPrice defaultValue={filterByPrice}>
             {priceOptions.map(option => (
               <option
                 key={option.value}

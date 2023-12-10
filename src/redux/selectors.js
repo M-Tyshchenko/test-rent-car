@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectCars = state => state.cars.cars;
 
-export const selectFavoriteCars = state => state.cars.favorites;
+export const selectFavoriteCars = state => state.favorites.favorites;
 
 export const selectIsLoading = state => state.cars.isLoading;
 
@@ -11,13 +11,6 @@ export const selectError = state => state.cars.error;
 export const selectFilterByBrand = state => state.filter.filterBrand;
 
 export const selectFilterByPrice = state => state.filter.filterPrice;
-
-export const selectCatalogCars = createSelector(
-  [selectCars, selectFavoriteCars],
-  (cars, favorites) => {
-    return;
-  }
-);
 
 export const selectVisibleCars = createSelector(
   [selectCars, selectFilterByBrand, selectFilterByPrice],
