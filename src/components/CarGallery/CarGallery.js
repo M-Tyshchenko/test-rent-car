@@ -13,8 +13,6 @@ export const CarGallery = () => {
     cars = favoritecars;
   }
 
-  // const dispatch = useDispatch();
-
   return (
     <CarGalleryContainer>
       <CarList>
