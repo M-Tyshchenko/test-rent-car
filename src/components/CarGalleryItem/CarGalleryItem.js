@@ -1,5 +1,7 @@
 import Modal from 'react-modal';
 import { RxCross1 } from 'react-icons/rx';
+import { FaRegHeart } from 'react-icons/fa';
+import { FaHeart } from 'react-icons/fa';
 import {
   ImageContainer,
   Image,
@@ -22,7 +24,7 @@ import {
   RentalCarBtn,
 } from './CarGalleryItem.styled';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFavoriteCars } from 'redux/selectors';
+import { selectCars, selectFavoriteCars } from 'redux/selectors';
 import { addFavorite, deleteFavorite } from 'redux/operations';
 import { useState } from 'react';
 
@@ -30,12 +32,22 @@ Modal.setAppElement('#root');
 
 export const CarGalleryItem = ({ car }) => {
   const dispatch = useDispatch();
+
+  const cars = useSelector(selectCars);
   const favorites = useSelector(selectFavoriteCars);
-  const isFavorite = favorites.find(favorite => favorite.id === car.id);
+  console.log('cars', cars);
+  console.log('favorites', favorites);
+
   const address = car.address.split(',');
   const rentalConditions = car.rentalConditions.split('\n');
   const minDriverAge = Number(rentalConditions[0].slice(-2));
   const mileage = car.mileage.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+  let isFavorite = false;
+  const findingFavorite = favorites.find(favorite => favorite.id === car.id);
+  if (findingFavorite !== undefined) {
+    isFavorite = true;
+  }
 
   const [isModalOpen, setIsModalOpen] = useState(false);
 
@@ -50,19 +62,21 @@ export const CarGalleryItem = ({ car }) => {
           <ImageContainer>
             <Image src={car.img} alt={car.make} loading="lazy" />
             {isFavorite && (
-              <button
+              <FavoriteTrueBtn
                 type="button"
                 onClick={() => dispatch(deleteFavorite(car.id))}
               >
-                <FavoriteTrueBtn size={18} />
-              </button>
+                <FaHeart size={18} />
+              </FavoriteTrueBtn>
             )}
 
             {!isFavorite && (
-              <button type="button" onClick={() => dispatch(addFavorite(car))}>
-                <FavoriteFalseBtn size={18} />
-                {isFavorite && <FavoriteTrueBtn size={18} />}
-              </button>
+              <FavoriteFalseBtn
+                type="button"
+                onClick={() => dispatch(addFavorite(car))}
+              >
+                <FaRegHeart size={18} />
+              </FavoriteFalseBtn>
             )}
           </ImageContainer>
 
