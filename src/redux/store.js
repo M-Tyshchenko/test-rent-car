@@ -12,7 +12,6 @@ import {
 import storage from 'redux-persist/lib/storage'; // defaults to localStorage for web
 import { carsReducer } from './carsSlice';
 import { filterReducer } from './filterSlice';
-import { modalReducer } from './modalSlice';
 
 const persistConfig = {
   key: 'root',
@@ -25,7 +24,6 @@ export const store = configureStore({
   reducer: {
     cars: persistedCarsReducer,
     filter: filterReducer,
-    modal: modalReducer,
   },
   middleware: getDefaultMiddleware =>
     getDefaultMiddleware({
