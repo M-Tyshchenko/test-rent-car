@@ -12,6 +12,13 @@ export const selectFilterByBrand = state => state.filter.filterBrand;
 
 export const selectFilterByPrice = state => state.filter.filterPrice;
 
+export const selectCatalogCars = createSelector(
+  [selectCars, selectFavoriteCars],
+  (cars, favorites) => {
+    return;
+  }
+);
+
 export const selectVisibleCars = createSelector(
   [selectCars, selectFilterByBrand, selectFilterByPrice],
   (cars, filterBrand, filterPrice) => {
