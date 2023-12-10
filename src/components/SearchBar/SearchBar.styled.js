@@ -10,7 +10,9 @@ export const Form = styled.form`
 `;
 
 export const FormLabel = styled.label`
-  /* margin-bottom: 8px; */
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
   font-weight: 500;
   font-size: 14px;
   line-height: 18px;
@@ -25,7 +27,7 @@ export const SelectBrand = styled.select`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  color: #8a8a89;
+  /* color: #8a8a89; */
   border-color: transparent;
   border-radius: 14px;
 `;
@@ -38,7 +40,7 @@ export const SelectPrice = styled.select`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  color: #8a8a89;
+  /* color: #8a8a89; */
   border-color: transparent;
   border-radius: 14px;
 `;
@@ -53,7 +55,7 @@ export const Input = styled.input`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  color: #8a8a89;
+  /* color: #8a8a89; */
   border-color: transparent;
 
   width: 160px;
@@ -69,7 +71,6 @@ export const SearchBtn = styled.button`
   height: 48px;
   border-radius: 12px;
 
-  line-height: 20px;
   color: #fff;
   background-color: #3470ff;
 
