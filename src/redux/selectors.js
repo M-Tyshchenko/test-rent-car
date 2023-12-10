@@ -47,39 +47,35 @@ export const selectVisibleCars = createSelector(
   }
 );
 
-// export const selectVisibleCarsByBrand = createSelector(
-//   [selectCars, selectFilterByBrand],
-//   (cars, filterBrand) => {
-//     cars.filter(car =>
-//       car.make.toLowerCase().includes(filterBrand.toLowerCase())
-//     );
-//   }
-// );
-
-// export const selectVisibleCarsByPrice = createSelector(
-//   [selectCars, selectFilterByPrice],
-//   (cars, filterByPrice) =>
-//     cars.filter(
-//       car =>
-//         Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
-//         filterByPrice
-//     )
-// );
-
-// export const selectVisibleCars = createSelector(
-//   [selectVisibleCarsByBrand, selectFilterByPrice],
-//   (filteredByBrand, filterByPrice) =>
-//     filteredByBrand.filter(
-//       car =>
-//         Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
-//         filterByPrice
-//     )
-// );
-
 export const selectVisibleFavorites = createSelector(
-  [selectFavoriteCars, selectFilterByBrand],
-  (favorites, filter) =>
-    favorites.filter(car =>
-      car.make.toLowerCase().includes(filter.toLowerCase())
-    )
+  [selectFavoriteCars, selectFilterByBrand, selectFilterByPrice],
+  (favoriteCars, filterBrand, filterPrice) => {
+    let filteredCars = favoriteCars;
+
+    if (filterBrand !== '' && filterPrice !== '') {
+      filteredCars = favoriteCars
+        .filter(car =>
+          car.make.toLowerCase().includes(filterBrand.toLowerCase())
+        )
+        .filter(
+          car =>
+            Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
+            Number(filterPrice)
+        );
+      return filteredCars;
+    } else if (filterBrand === '' && filterPrice !== '') {
+      filteredCars = favoriteCars.filter(
+        car =>
+          Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
+          Number(filterPrice)
+      );
+      return filteredCars;
+    } else if (filterBrand !== '' && filterPrice === '') {
+      filteredCars = favoriteCars.filter(car =>
+        car.make.toLowerCase().includes(filterBrand.toLowerCase())
+      );
+      return filteredCars;
+    }
+    return filteredCars;
+  }
 );
