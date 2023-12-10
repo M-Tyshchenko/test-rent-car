@@ -6,7 +6,7 @@ import { selectError, selectIsLoading } from 'redux/selectors';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { ThreeDots } from 'react-loader-spinner';
 
-export const Catalog = () => {
+const Catalog = () => {
   const dispatch = useDispatch();
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
@@ -38,3 +38,5 @@ export const Catalog = () => {
     </>
   );
 };
+
+export default Catalog;
