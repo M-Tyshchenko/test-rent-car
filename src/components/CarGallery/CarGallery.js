@@ -1,10 +1,17 @@
 import { CarGalleryItem } from 'components/CarGalleryItem/CarGalleryItem';
 import { useSelector } from 'react-redux';
-import { selectVisibleCars } from 'redux/selectors';
+import { selectVisibleCars, selectVisibleFavorites } from 'redux/selectors';
 import { CarGalleryContainer, CarList, LoadMoreBtn } from './CarGallery.styled';
+import { useLocation } from 'react-router-dom';
 
 export const CarGallery = () => {
-  const cars = useSelector(selectVisibleCars);
+  const location = useLocation();
+  const catalogCars = useSelector(selectVisibleCars);
+  const favoritecars = useSelector(selectVisibleFavorites);
+  let cars = catalogCars;
+  if (location.pathname === '/favorites') {
+    cars = favoritecars;
+  }
 
   // const dispatch = useDispatch();
 
