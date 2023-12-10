@@ -15,7 +15,6 @@ export const Favorites = () => {
     dispatch(fetchFavoriteCars());
   }, [dispatch]);
   return (
-    // <h1>Your favourite cars for rent</h1>
     <>
       <SearchBar />
       {isLoading && !error && (
