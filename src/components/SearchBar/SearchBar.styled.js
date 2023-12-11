@@ -27,7 +27,6 @@ export const SelectBrand = styled.select`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  /* color: #8a8a89; */
   border-color: transparent;
   border-radius: 14px;
 `;
@@ -40,7 +39,6 @@ export const SelectPrice = styled.select`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  /* color: #8a8a89; */
   border-color: transparent;
   border-radius: 14px;
 `;
@@ -55,7 +53,6 @@ export const Input = styled.input`
   line-height: 20px;
   padding: 14px 18px;
   background-color: #f7f7fb;
-  /* color: #8a8a89; */
   border-color: transparent;
 
   width: 160px;
