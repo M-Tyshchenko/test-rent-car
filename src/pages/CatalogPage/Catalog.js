@@ -2,34 +2,22 @@ import { CarGallery } from 'components/CarGallery/CarGallery';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { fetchCars } from 'redux/operations';
-import {
-  selectError,
-  selectIsLoading,
-  selectTotalCars,
-  // selectVisibleCars,
-} from 'redux/selectors';
+import { selectError, selectIsLoading, selectTotalCars } from 'redux/selectors';
 import { SearchBar } from 'components/SearchBar/SearchBar';
 import { ThreeDots } from 'react-loader-spinner';
 import { CatalogContainer, LoadMoreBtn } from './Catalog.styled';
 
 const Catalog = () => {
   const dispatch = useDispatch();
-
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const totalCars = useSelector(selectTotalCars);
-
+  console.log(totalCars);
   const [page, setPage] = useState(1);
-  const perPage = 12;
-  const totalPages = Math.ceil(totalCars / perPage);
-
-  console.log({ totalCars });
-  console.log({ totalPages });
-  console.log({ page });
 
   useEffect(() => {
-    dispatch(fetchCars());
-  }, [dispatch]);
+    dispatch(fetchCars(page));
+  }, [dispatch, page]);
 
   const LoadMore = () => setPage(prevState => prevState + 1);
 
@@ -53,7 +41,8 @@ const Catalog = () => {
         />
       )}
       <CarGallery />
-      {totalCars !== 0 && totalPages !== page && !isLoading && (
+     
+      {totalCars !== 0 && !isLoading && (
         <LoadMoreBtn type="button" onClick={LoadMore}>
           Load More
         </LoadMoreBtn>
