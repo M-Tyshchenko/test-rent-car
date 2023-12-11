@@ -12,7 +12,7 @@ const Catalog = () => {
   const isLoading = useSelector(selectIsLoading);
   const error = useSelector(selectError);
   const totalCars = useSelector(selectTotalCars);
-  console.log(totalCars);
+
   const [page, setPage] = useState(1);
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const Catalog = () => {
         />
       )}
       <CarGallery />
-     
+
       {totalCars !== 0 && !isLoading && (
         <LoadMoreBtn type="button" onClick={LoadMore}>
           Load More
