@@ -3,6 +3,8 @@ import { createSlice } from '@reduxjs/toolkit';
 const initialState = {
   filterBrand: '',
   filterPrice: '',
+  filterMileageFrom: '',
+  filterMileageTo: '',
 };
 
 export const filterSlice = createSlice({
@@ -15,8 +17,19 @@ export const filterSlice = createSlice({
     changeFilterPrice: (state, action) => {
       state.filterPrice = action.payload;
     },
+    changeFilterMileageFrom: (state, action) => {
+      state.filterMileageFrom = action.payload;
+    },
+    changeFilterMileageTo: (state, action) => {
+      state.filterMileageTo = action.payload;
+    },
   },
 });
 
-export const { changeFilterBrand, changeFilterPrice } = filterSlice.actions;
+export const {
+  changeFilterBrand,
+  changeFilterPrice,
+  changeFilterMileageFrom,
+  changeFilterMileageTo,
+} = filterSlice.actions;
 export const filterReducer = filterSlice.reducer;
