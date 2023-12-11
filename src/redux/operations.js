@@ -7,9 +7,11 @@ axios.defaults.headers.post['Access-Control-Allow-Origin'] = '*';
 
 export const fetchCars = createAsyncThunk(
   'cars/fetchAll',
-  async (_, thunkApi) => {
+  async (page, thunkApi) => {
     try {
-      const response = await axios.get('/advert');
+      const response = await axios.get('/advert', {
+        params: { page, limit: 12 },
+      });
       return response.data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
