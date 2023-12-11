@@ -1,9 +1,6 @@
 import { lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import Layout from './Layout/Layout';
-// import { Home } from 'pages/HomePage/Home';
-// import { Catalog } from 'pages/CatalogPage/Catalog';
-// import { Favorites } from 'pages/FavoritePage/Favorites';
 
 const HomePage = lazy(() => import('pages/HomePage/Home'));
 const CatalogPage = lazy(() => import('pages/CatalogPage/Catalog'));
