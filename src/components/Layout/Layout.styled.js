@@ -8,6 +8,4 @@ export const LayoutContainer = styled.div`
 export const PageContainer = styled.div`
   padding-top: 25px;
   padding-bottom: 25px;
-  /* display: flex; */
-  /* justify-content: center; */
 `;
