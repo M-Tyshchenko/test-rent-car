@@ -27,41 +27,6 @@ export const selectVisibleCars = createSelector(
     selectFilterMileageTo,
   ],
   (cars, filterBrand, filterPrice, filterMileageFrom, filterMileageTo) => {
-    //   let filteredCars = [];
-
-    //   if (filterBrand !== '') {
-    //     filteredCars = cars.filter(car =>
-    //       car.make.toLowerCase().includes(filterBrand.toLowerCase())
-    //     );
-    //   } else {
-    //     filteredCars = cars;
-    //   }
-
-    //   if (filterPrice !== '') {
-    //     filteredCars = cars.filter(
-    //       car =>
-    //         Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
-    //         Number(filterPrice)
-    //     );
-    //   } else {
-    //     filteredCars = filteredCars;
-    //   }
-
-    //   if (filterMileageFrom !== '') {
-    //     filteredCars = cars.filter(car => car.mileage >= filterMileageFrom);
-    //   } else {
-    //     filteredCars = filteredCars;
-    //   }
-
-    //   if (filterMileageTo !== '') {
-    //     filteredCars = cars.filter(car => car.mileage <= filterMileageTo);
-    //   } else {
-    //     filteredCars = filteredCars;
-    //   }
-
-    //   return filteredCars;
-    // }
-
     let filteredCars = cars;
 
     if (
