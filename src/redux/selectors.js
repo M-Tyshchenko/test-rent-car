@@ -2,6 +2,8 @@ import { createSelector } from '@reduxjs/toolkit';
 
 export const selectCars = state => state.cars.cars;
 
+export const selectTotalCars = state => state.cars.cars.length;
+
 export const selectFavoriteCars = state => state.favorites.favorites;
 
 export const selectIsLoading = state => state.cars.isLoading;
