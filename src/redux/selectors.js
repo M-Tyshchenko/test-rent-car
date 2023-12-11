@@ -14,12 +14,62 @@ export const selectFilterByBrand = state => state.filter.filterBrand;
 
 export const selectFilterByPrice = state => state.filter.filterPrice;
 
+export const selectFilterMileageFrom = state => state.filter.filterMileageFrom;
+
+export const selectFilterMileageTo = state => state.filter.filterMileageTo;
+
 export const selectVisibleCars = createSelector(
-  [selectCars, selectFilterByBrand, selectFilterByPrice],
-  (cars, filterBrand, filterPrice) => {
+  [
+    selectCars,
+    selectFilterByBrand,
+    selectFilterByPrice,
+    selectFilterMileageFrom,
+    selectFilterMileageTo,
+  ],
+  (cars, filterBrand, filterPrice, filterMileageFrom, filterMileageTo) => {
+    //   let filteredCars = [];
+
+    //   if (filterBrand !== '') {
+    //     filteredCars = cars.filter(car =>
+    //       car.make.toLowerCase().includes(filterBrand.toLowerCase())
+    //     );
+    //   } else {
+    //     filteredCars = cars;
+    //   }
+
+    //   if (filterPrice !== '') {
+    //     filteredCars = cars.filter(
+    //       car =>
+    //         Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
+    //         Number(filterPrice)
+    //     );
+    //   } else {
+    //     filteredCars = filteredCars;
+    //   }
+
+    //   if (filterMileageFrom !== '') {
+    //     filteredCars = cars.filter(car => car.mileage >= filterMileageFrom);
+    //   } else {
+    //     filteredCars = filteredCars;
+    //   }
+
+    //   if (filterMileageTo !== '') {
+    //     filteredCars = cars.filter(car => car.mileage <= filterMileageTo);
+    //   } else {
+    //     filteredCars = filteredCars;
+    //   }
+
+    //   return filteredCars;
+    // }
+
     let filteredCars = cars;
 
-    if (filterBrand !== '' && filterPrice !== '') {
+    if (
+      filterBrand !== '' &&
+      filterPrice !== '' &&
+      filterMileageFrom !== '' &&
+      filterMileageTo !== ''
+    ) {
       filteredCars = cars
         .filter(car =>
           car.make.toLowerCase().includes(filterBrand.toLowerCase())
@@ -28,6 +78,10 @@ export const selectVisibleCars = createSelector(
           car =>
             Number(car.rentalPrice.slice(1, car.rentalPrice.length)) <=
             Number(filterPrice)
+        )
+        .filter(
+          car =>
+            car.mileage >= filterMileageFrom && car.mileage <= filterMileageTo
         );
       return filteredCars;
     } else if (filterBrand === '' && filterPrice !== '') {
