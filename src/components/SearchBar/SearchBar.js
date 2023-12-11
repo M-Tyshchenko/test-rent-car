@@ -1,6 +1,16 @@
 import { useDispatch, useSelector } from 'react-redux';
-import { changeFilterBrand, changeFilterPrice } from 'redux/filterSlice';
-import { selectFilterByBrand, selectFilterByPrice } from 'redux/selectors';
+import {
+  changeFilterBrand,
+  changeFilterMileageFrom,
+  changeFilterMileageTo,
+  changeFilterPrice,
+} from 'redux/filterSlice';
+import {
+  selectFilterByBrand,
+  selectFilterByPrice,
+  selectFilterMileageFrom,
+  selectFilterMileageTo,
+} from 'redux/selectors';
 
 import {
   Form,
@@ -11,11 +21,14 @@ import {
   SelectBrand,
   SelectPrice,
 } from './SearchBar.styled';
+import { fetchCars } from 'redux/operations';
 
 export const SearchBar = () => {
   const dispatch = useDispatch();
   const filterByBrand = useSelector(selectFilterByBrand);
   const filterByPrice = useSelector(selectFilterByPrice);
+  const filterMileageFrom = useSelector(selectFilterMileageFrom);
+  const filterMileageTo = useSelector(selectFilterMileageTo);
 
   const brandOptions = [
     { value: 'buick', label: 'Buick' },
@@ -50,8 +63,11 @@ export const SearchBar = () => {
       <Form
         onSubmit={event => {
           event.preventDefault();
+          dispatch(fetchCars());
           dispatch(changeFilterBrand(event.target[0].value));
           dispatch(changeFilterPrice(event.target[1].value));
+          dispatch(changeFilterMileageFrom(event.target[2].value));
+          dispatch(changeFilterMileageTo(event.target[3].value));
         }}
       >
         <FormLabel>
@@ -80,11 +96,13 @@ export const SearchBar = () => {
             ))}
           </SelectPrice>
         </FormLabel>
+
         <FormLabel>
           Car mileage / km
           <InputBox>
             <Input
               placeholder="From"
+              defaultValue={filterMileageFrom}
               style={{
                 borderTopLeftRadius: '14px',
                 borderBottomLeftRadius: '14px',
@@ -93,6 +111,7 @@ export const SearchBar = () => {
             />
             <Input
               placeholder="To"
+              defaultValue={filterMileageTo}
               style={{
                 borderTopRightRadius: '14px',
                 borderBottomRightRadius: '14px',
